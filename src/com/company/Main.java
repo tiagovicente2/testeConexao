@@ -1,27 +1,29 @@
 package com.company;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.JSONArray;
-
 import java.sql.ResultSet;
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        ConexaoMysql conn = new ConexaoMysql();
-        conn.conectarMySQL();
-        String query = "SELECT * FROM teste";
-        ResultSet rs = conn.execute(query);
+        getUser();
 
-        ObjectMapper objectMapper = new ObjectMapper();
+    }
 
-        JSONArray result = new JSONArray();
+    public static void getUser() throws Exception {
+        ConexaoMysql conn = new ConexaoMysql(); // instancia nova conexão
+        conn.conectarMySQL(); // inicia conexão
+        String query = "SELECT * FROM teste"; // query no banco
+        ResultSet rs = conn.execute(query); // realiza query
 
-        result = Converter.convertToJSON(rs);
+        while (rs.next()){
+            User user = new User();
+            user.setId(rs.getInt("id"));
+            user.setName(rs.getString("name"));
+            user.setEmail(rs.getString("email"));
+            user.setAge(rs.getInt("age"));
+        }
 
-        User user = objectMapper.readValue(result.toString(), User.class);
-
-        System.out.println("nome " + user.getName());
+        // JSONArray result = Converter.convertToJSON(rs); // converte para JSON
 
         conn.FecharConexao();
     }

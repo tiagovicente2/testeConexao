@@ -1,10 +1,10 @@
 package com.company;
 
 public class User {
-    private String name;
-    private int age;
-    private String email;
     private int id;
+    private String name;
+    private String email;
+    private int age;
 
     public String getName() {
         return name;
