@@ -1,5 +1,7 @@
 package com.company;
 
+import org.json.JSONArray;
+
 import java.sql.ResultSet;
 
 public class Main {
@@ -15,15 +17,18 @@ public class Main {
         String query = "SELECT * FROM teste"; // query no banco
         ResultSet rs = conn.execute(query); // realiza query
 
-        while (rs.next()){
+        JSONArray result = Converter.convertToJSON(rs); // converte para JSON
+
+        /*while (rs.next()){
             User user = new User();
             user.setId(rs.getInt("id"));
             user.setName(rs.getString("name"));
             user.setEmail(rs.getString("email"));
             user.setAge(rs.getInt("age"));
-        }
+            System.out.println(user.getName());
+        }*/
 
-        // JSONArray result = Converter.convertToJSON(rs); // converte para JSON
+        System.out.println(result);
 
         conn.FecharConexao();
     }

@@ -34,7 +34,7 @@ public class ConexaoMysql {
                 status = ("STATUS--->Não foi possivel realizar conexao");
             }
 
-        } catch (ClassNotFoundException e) { // Driver n�o encontrado
+        } catch (ClassNotFoundException e) { // Driver não encontrado
             System.out.println("O driver expecificado nao foi encontrado.");
             //return null;
         } catch (SQLException e) {
@@ -44,12 +44,12 @@ public class ConexaoMysql {
         }
     }
 
-    // M�todo que retorna o status da sua conex�o//
+    // Método que retorna o status da sua conexão
     public String statusConection() {
         return status;
     }
 
-    // M�todo que fecha sua conex�o//
+    // Método que fecha sua conexão
     public boolean FecharConexao() throws ClassNotFoundException  {
         try {
             connection.close();
@@ -60,7 +60,7 @@ public class ConexaoMysql {
 
     }
 
-    // M�todo que reinicia sua conex�o//
+    // Método que reinicia sua conexão
 
     public Connection ReiniciarConexao() throws ClassNotFoundException, SQLException  {
         FecharConexao();
